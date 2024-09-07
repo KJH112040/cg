@@ -192,7 +192,55 @@ int main() {
 		}
 			break;
 		case 't':
+		{
 			// 전치 행렬과 그 행렬식 값
+			system("cls");
+			for (int i = 0; i < 4; ++i) {
+				if (i == 0)cout << "행렬1";
+				cout << "	|";
+				for (int j = 0; j < 4; ++j) {
+					cout << matrix1[i][j] << "	";
+				}
+				cout << "|";
+				if (i == 0)cout << "	행렬2	|";
+				else cout << "		|";
+				for (int j = 0; j < 4; ++j) {
+					cout << matrix2[i][j] << "	";
+				}
+				cout << "|\n";
+			}
+			int T_matrix1[4][4], T_matrix2[4][4];
+			for (int i = 0; i < 4; ++i) {
+				for (int j = 0; j < 4; ++j) {
+					T_matrix1[i][j] = matrix1[j][i];
+					T_matrix2[i][j] = matrix2[j][i];
+				}
+			}
+			cout << "\n\n결과\n";
+			for (int i = 0; i < 4; ++i) {
+				if (i == 0)cout << "행렬1의 전치행렬						행렬2의 전치행렬\n";
+				cout << "|";
+				for (int j = 0; j < 4; ++j) {
+					cout << matrix1[i][j] << "	";
+				}
+				cout << "|				|";
+				for (int j = 0; j < 4; ++j) {
+					cout << matrix2[i][j] << "	";
+				}
+				cout << "|\n";
+			}
+			cout << "행렬1의 전치행렬의 행렬식:";
+			cout << T_matrix1[0][0] * (T_matrix1[1][1] * (T_matrix1[2][2] * T_matrix1[3][3] - T_matrix1[2][3] * T_matrix1[3][2]) - T_matrix1[1][2] * (T_matrix1[2][1] * T_matrix1[3][3] - T_matrix1[2][3] * T_matrix1[3][1]) + T_matrix1[1][3] * (T_matrix1[2][1] * T_matrix1[3][2] - T_matrix1[2][2] * T_matrix1[3][1]))
+				- T_matrix1[0][1] * (T_matrix1[1][0] * (T_matrix1[2][2] * T_matrix1[3][3] - T_matrix1[2][3] * T_matrix1[3][2]) - T_matrix1[1][2] * (T_matrix1[2][0] * T_matrix1[3][3] - T_matrix1[2][3] * T_matrix1[3][0]) + T_matrix1[1][3] * (T_matrix1[2][0] * T_matrix1[3][2] - T_matrix1[2][2] * T_matrix1[3][0]))
+				+ T_matrix1[0][2] * (T_matrix1[1][0] * (T_matrix1[2][1] * T_matrix1[3][3] - T_matrix1[2][3] * T_matrix1[3][1]) - T_matrix1[1][1] * (T_matrix1[2][0] * T_matrix1[3][3] - T_matrix1[2][3] * T_matrix1[3][0]) + T_matrix1[1][3] * (T_matrix1[2][0] * T_matrix1[3][1] - T_matrix1[2][1] * T_matrix1[3][0]))
+				- T_matrix1[0][3] * (T_matrix1[1][0] * (T_matrix1[2][1] * T_matrix1[3][2] - T_matrix1[2][2] * T_matrix1[3][1]) - T_matrix1[1][1] * (T_matrix1[2][0] * T_matrix1[3][2] - T_matrix1[2][2] * T_matrix1[3][0]) + T_matrix1[1][2] * (T_matrix1[2][0] * T_matrix1[3][1] - T_matrix1[2][1] * T_matrix1[3][0]));
+			cout << "					행렬2의 전치행렬의 행렬식:";
+			cout << T_matrix2[0][0] * (T_matrix2[1][1] * (T_matrix2[2][2] * T_matrix2[3][3] - T_matrix2[2][3] * T_matrix2[3][2]) - T_matrix2[1][2] * (T_matrix2[2][1] * T_matrix2[3][3] - T_matrix2[2][3] * T_matrix2[3][1]) + T_matrix2[1][3] * (T_matrix2[2][1] * T_matrix2[3][2] - T_matrix2[2][2] * T_matrix2[3][1]))
+				- T_matrix2[0][1] * (T_matrix2[1][0] * (T_matrix2[2][2] * T_matrix2[3][3] - T_matrix2[2][3] * T_matrix2[3][2]) - T_matrix2[1][2] * (T_matrix2[2][0] * T_matrix2[3][3] - T_matrix2[2][3] * T_matrix2[3][0]) + T_matrix2[1][3] * (T_matrix2[2][0] * T_matrix2[3][2] - T_matrix2[2][2] * T_matrix2[3][0]))
+				+ T_matrix2[0][2] * (T_matrix2[1][0] * (T_matrix2[2][1] * T_matrix2[3][3] - T_matrix2[2][3] * T_matrix2[3][1]) - T_matrix2[1][1] * (T_matrix2[2][0] * T_matrix2[3][3] - T_matrix2[2][3] * T_matrix2[3][0]) + T_matrix2[1][3] * (T_matrix2[2][0] * T_matrix2[3][1] - T_matrix2[2][1] * T_matrix2[3][0]))
+				- T_matrix2[0][3] * (T_matrix2[1][0] * (T_matrix2[2][1] * T_matrix2[3][2] - T_matrix2[2][2] * T_matrix2[3][1]) - T_matrix2[1][1] * (T_matrix2[2][0] * T_matrix2[3][2] - T_matrix2[2][2] * T_matrix2[3][0]) + T_matrix2[1][2] * (T_matrix2[2][0] * T_matrix2[3][1] - T_matrix2[2][1] * T_matrix2[3][0]));
+			cout << "\n\n명령어 입력:";
+		}
 			break;
 		case 'e':
 		{	// 처음 눌렀을 때: 행렬의 짝수값만 출력 -> 또 눌렀을 때: 홀수값만 출력 -> 또 한번 더 눌렀을 때: 원상태 출력
