@@ -221,11 +221,11 @@ int main() {
 				if (i == 0)cout << "행렬1의 전치행렬						행렬2의 전치행렬\n";
 				cout << "|";
 				for (int j = 0; j < 4; ++j) {
-					cout << matrix1[i][j] << "	";
+					cout << T_matrix1[i][j] << "	";
 				}
 				cout << "|				|";
 				for (int j = 0; j < 4; ++j) {
-					cout << matrix2[i][j] << "	";
+					cout << T_matrix2[i][j] << "	";
 				}
 				cout << "|\n";
 			}
