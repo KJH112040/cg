@@ -25,7 +25,6 @@
 //
 //int main() {
 //	create_board();
-//
 //	while (opencnt<24) {
 //		print_board();
 //
