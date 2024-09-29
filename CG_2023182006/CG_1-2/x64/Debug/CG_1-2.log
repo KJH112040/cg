@@ -1,0 +1,11 @@
+﻿  cg1-2.cpp
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(21,1): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(66,19): warning C4804: '<': 연산에 'bool' 형식을 사용하는 것은 안전하지 않습니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(66,50): warning C4804: '<': 연산에 'bool' 형식을 사용하는 것은 안전하지 않습니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(69,24): warning C4804: '<': 연산에 'bool' 형식을 사용하는 것은 안전하지 않습니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(69,55): warning C4804: '<': 연산에 'bool' 형식을 사용하는 것은 안전하지 않습니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(72,24): warning C4804: '<': 연산에 'bool' 형식을 사용하는 것은 안전하지 않습니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(72,55): warning C4804: '<': 연산에 'bool' 형식을 사용하는 것은 안전하지 않습니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(75,24): warning C4804: '<': 연산에 'bool' 형식을 사용하는 것은 안전하지 않습니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(75,55): warning C4804: '<': 연산에 'bool' 형식을 사용하는 것은 안전하지 않습니다.
+  CG_1-2.vcxproj -> C:\github_local_repository\cg\CG_2023182006\x64\Debug\CG_1-2.exe
