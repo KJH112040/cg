@@ -15,7 +15,7 @@ std::random_device rd;
 std::default_random_engine dre(rd());
 std::uniform_real_distribution<GLfloat> uid(0.0f, 1.0f);
 float bgc_r = 1.0f, bgc_g = 1.0f, bgc_b = 1.0f;
-Rect rect[4] = { {-1,0,0,1,uid(dre),uid(dre),uid(dre)},{0,0,1,1,uid(dre),uid(dre),uid(dre)},
+Rect rect[4] = { {-1.0f,0.0f,0.0f,1.0f,uid(dre),uid(dre),uid(dre)},{0,0,1,1,uid(dre),uid(dre),uid(dre)},
 				{-1,-1,0,0,uid(dre),uid(dre),uid(dre)},{0,-1,1,0,uid(dre),uid(dre),uid(dre)} };
 void main(int argc, char** argv) //--- 윈도우 출력하고 콜백함수 설정 
 { //--- 윈도우 생성하기
@@ -59,29 +59,11 @@ void Keyboard(unsigned char key, int x, int y)
 }
 void Mouse(int button, int state, int x, int y)
 {
-	if (state == GLUT_DOWN) {
-		switch (button)
-		{
-		case GLUT_LEFT_BUTTON:
-			if (rect[0].x1 < x < rect[0].x2 && rect[0].y1 < y < rect[0].y2) {
-				rect[0].r = uid(dre), rect[0].g = uid(dre), rect[0].b = uid(dre);
-			}
-			else if (rect[1].x1 < x < rect[1].x2 && rect[1].y1 < y < rect[1].y2) {
-				rect[1].r = uid(dre), rect[1].g = uid(dre), rect[1].b = uid(dre);
-			}
-			else if (rect[2].x1 < x < rect[2].x2 && rect[2].y1 < y < rect[2].y2) {
-				rect[2].r = uid(dre), rect[2].g = uid(dre), rect[2].b = uid(dre);
-			}
-			else if (rect[3].x1 < x < rect[3].x2 && rect[3].y1 < y < rect[3].y2) {
-				rect[3].r = uid(dre), rect[3].g = uid(dre), rect[3].b = uid(dre);
-			}
-			else {
-				bgc_r = uid(dre), bgc_g = uid(dre), bgc_b = uid(dre);
-			}
-			break;
-		case GLUT_RIGHT_BUTTON:
-			break;
-		}
+	if (state == GLUT_DOWN && button == GLUT_LEFT_BUTTON) {
+		std::cout << "좌클릭 마우스 위치: "<<x<<","<<y<<'\n';
+	}
+	else if (state == GLUT_DOWN && button == GLUT_RIGHT_BUTTON) {
+		std::cout << "우클릭 마우스 위치: " << x << "," << y << '\n';
 	}
 	glutPostRedisplay();
 }
