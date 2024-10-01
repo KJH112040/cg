@@ -61,10 +61,11 @@ void Keyboard(unsigned char key, int x, int y)
 void Mouse(int button, int state, int x, int y)
 {
 	if (state == GLUT_DOWN && button == GLUT_LEFT_BUTTON) {
-		std::cout << "좌클릭 마우스 위치: "<<x<<","<<y<<'\n';
-		if (400*(rect[0].x1 + 1) < x && x < 400*(rect[0].x2 + 1)&& 300*(1-rect[0].y2) < y && y < 300*(1-rect[0].y1) ) {
+		std::cout << "좌클릭 마우스 위치: " << x << "," << y << '\n';
+		if (400 * (rect[0].x1 + 1) < x && x < 400 * (rect[0].x2 + 1) && 300 * (1 - rect[0].y2) < y && y < 300 * (1 - rect[0].y1)) {
 			rect[0].r = uid(dre), rect[0].g = uid(dre), rect[0].b = uid(dre);
-		}else if(400 * (rect[1].x1 + 1) < x && x < 400 * (rect[1].x2 + 1) &&300 * (1 - rect[1].y2) < y && y < 300 * (1 - rect[1].y1)) {
+		}
+		else if (400 * (rect[1].x1 + 1) < x && x < 400 * (rect[1].x2 + 1) && 300 * (1 - rect[1].y2) < y && y < 300 * (1 - rect[1].y1)) {
 			rect[1].r = uid(dre), rect[1].g = uid(dre), rect[1].b = uid(dre);
 		}
 		else if (400 * (rect[2].x1 + 1) < x && x < 400 * (rect[2].x2 + 1) && 300 * (1 - rect[2].y2) < y && y < 300 * (1 - rect[2].y1)) {
@@ -73,13 +74,10 @@ void Mouse(int button, int state, int x, int y)
 		else if (400 * (rect[3].x1 + 1) < x && x < 400 * (rect[3].x2 + 1) && 300 * (1 - rect[3].y2) < y && y < 300 * (1 - rect[3].y1)) {
 			rect[3].r = uid(dre), rect[3].g = uid(dre), rect[3].b = uid(dre);
 		}
-		else {
-			bgc_r = uid(dre), bgc_g = uid(dre), bgc_b = uid(dre);
-		}
 	}
 	else if (state == GLUT_DOWN && button == GLUT_RIGHT_BUTTON) {
 		std::cout << "우클릭 마우스 위치: " << x << "," << y << '\n';
-		if(0<x&&x<400&&0<y&&y<300){
+		if (0 < x && x < 400 && 0 < y && y < 300) {
 			rect[0] = Zoom_InOut(x, y, rect[0]);
 		}
 		else if (400 < x && x < 800 && 0 < y && y < 300) {
@@ -93,22 +91,6 @@ void Mouse(int button, int state, int x, int y)
 		}
 	}
 	glutPostRedisplay();
-}
-Rect Zoom_InOut(int x,int y,Rect r) {
-	Rect zrect=r;
-	if (400 * (zrect.x1 + 1) < x && x < 400 * (zrect.x2 + 1) && 300 * (1 - zrect.y2) < y && y < 300 * (1 - zrect.y1) && zrect.x2 - zrect.x1>0.1) {
-		zrect.x1 += 0.05;
-		zrect.x2 -= 0.05;
-		zrect.y1 += 0.05;
-		zrect.y2 -= 0.05;
-	}
-	else {
-		zrect.x1 -= 0.05;
-		zrect.x2 += 0.05;
-		zrect.y1 -= 0.05;
-		zrect.y2 += 0.05;
-	}
-	return zrect;
 }
 void RandomTimerFunction(int value)
 {

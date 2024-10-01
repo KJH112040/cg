@@ -1,11 +1,11 @@
 ﻿  cg1-2.cpp
 C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(22,1): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
-C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(97,19): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
-C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(98,19): warning C4305: '-=': 'double'에서 'GLfloat'(으)로 잘립니다.
-C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(99,19): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
-C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(100,19): warning C4305: '-=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(100,19): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(101,19): warning C4305: '-=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(102,19): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
 C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(103,19): warning C4305: '-=': 'double'에서 'GLfloat'(으)로 잘립니다.
-C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(104,19): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
-C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(105,19): warning C4305: '-=': 'double'에서 'GLfloat'(으)로 잘립니다.
-C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(106,19): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(106,19): warning C4305: '-=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(107,19): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(108,19): warning C4305: '-=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\CG_1-2\cg1-2.cpp(109,19): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
   CG_1-2.vcxproj -> C:\github_local_repository\cg\CG_2023182006\x64\Debug\CG_1-2.exe
