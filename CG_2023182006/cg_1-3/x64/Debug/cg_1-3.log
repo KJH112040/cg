@@ -1,0 +1,18 @@
+﻿  cg1-3.cpp
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(18,53): warning C4305: '인수': 'double'에서 '_Ty'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(18,53): warning C4305:         with
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(18,53): warning C4305:         [
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(18,53): warning C4305:             _Ty=GLfloat
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(18,53): warning C4305:         ]
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(26,1): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(115,34): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(116,34): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(119,34): warning C4305: '-=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(120,34): warning C4305: '-=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(124,34): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(125,34): warning C4305: '+=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(128,34): warning C4305: '-=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(129,34): warning C4305: '-=': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(149,37): warning C4244: '=': 'double'에서 'GLfloat'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-3\cg1-3.cpp(149,77): warning C4244: '=': 'double'에서 'GLfloat'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  cg_1-3.vcxproj -> C:\github_local_repository\cg\CG_2023182006\x64\Debug\cg_1-3.exe
