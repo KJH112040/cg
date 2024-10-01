@@ -15,7 +15,7 @@ typedef struct Rect {
 }Rect;
 std::random_device rd;
 std::default_random_engine dre(rd());
-std::uniform_real_distribution<GLfloat> pos_uid(-1, 0.8),clr_uid(0.0f,1.0f);
+std::uniform_real_distribution<GLfloat> pos_uid(-1.0f, 0.8f),clr_uid(0.0f,1.0f);
 float bgc_r = 1.0f, bgc_g = 1.0f, bgc_b = 1.0f;
 Rect rect[10];
 void Create_rect();
@@ -28,7 +28,7 @@ void main(int argc, char** argv) //--- 윈도우 출력하고 콜백함수 설정
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA); // 디스플레이 모드 설정
 	glutInitWindowPosition(100, 100); // 윈도우의 위치 지정
 	glutInitWindowSize(800, 600); // 윈도우의 크기 지정
-	glutCreateWindow("1-2"); // 윈도우 생성(윈도우 이름)
+	glutCreateWindow("1-3"); // 윈도우 생성(윈도우 이름)
 	//--- GLEW 초기화하기
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK) // glew 초기화
@@ -75,7 +75,7 @@ void Mouse(int button, int state, int x, int y)
 {
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
 		for (int i = 0; i < 10; ++i) {
-			if (400 * (rect[i].x1 + 1) < x && x < 400 * (rect[i].x2 + 1) && 300 * (1 - rect[i].y2) < y && y < 300 * (1 - rect[i].y1)) {
+			if (rect[i].check ==true && 400 * (rect[i].x1 + 1) < x && x < 400 * (rect[i].x2 + 1) && 300 * (1 - rect[i].y2) < y && y < 300 * (1 - rect[i].y1)) {
 				select_rect = i;
 			}
 		}
@@ -90,6 +90,87 @@ void Mouse(int button, int state, int x, int y)
 	}
 	else if (state == GLUT_UP) {
 		if (select_rect != -1) {
+			Rect r;
+			bool overlapped = false;
+			for (int i = 0; i < 10; ++i) {
+				if (i != select_rect && rect[i].check) {
+					r.r = rect[i].r, r.g = rect[i].g, r.b = rect[i].b, r.check = true;
+					if (rect[i].x1 <= rect[select_rect].x1 && rect[select_rect].x1 <= rect[i].x2) {
+						if (rect[i].y1 <= rect[select_rect].y1 && rect[select_rect].y1 <= rect[i].y2) {
+							r.x1 = rect[i].x1;
+							if (rect[i].x1 <= rect[select_rect].x2 && rect[select_rect].x2 <= rect[i].x2) r.x2 = rect[i].x2;
+							else r.x2 = rect[select_rect].x2;
+							r.y1 = rect[i].y1;
+							if (rect[i].y1 <= rect[select_rect].y2 && rect[select_rect].y2 <= rect[i].y2) r.y2 = rect[i].y2;
+							else r.y2 = rect[select_rect].y2;
+							rect_cnt-=2;
+							rect[i].check = false, rect[select_rect].check = false;
+							overlapped = true;
+							break;
+						}
+						else if (rect[select_rect].y1 <= rect[i].y1 && rect[i].y1 <= rect[select_rect].y2) {
+							r.x1 = rect[i].x1;
+							if (rect[i].x1 <= rect[select_rect].x2 && rect[select_rect].x2 <= rect[i].x2) r.x2 = rect[i].x2;
+							else r.x2 = rect[select_rect].x2;
+							r.y1 = rect[select_rect].y1;
+							if (rect[select_rect].y1 <= rect[i].y2 && rect[i].y2 <= rect[select_rect].y2)r.y2 = rect[select_rect].y2;
+							else r.y2 = rect[i].y2;
+							rect_cnt -= 2;
+							rect[i].check = false, rect[select_rect].check = false;
+							overlapped = true;
+							break;
+						}
+					}
+					else if (rect[select_rect].x1 <= rect[i].x1&& rect[i].x1 <= rect[select_rect].x2) {
+						if (rect[i].y1 <= rect[select_rect].y1 && rect[select_rect].y1 <= rect[i].y2) {
+							r.x1 = rect[select_rect].x1;
+							if (rect[select_rect].x1 <= rect[i].x2 && rect[i].x2 <= rect[select_rect].x2) r.x2 = rect[select_rect].x2;
+							else r.x2 = rect[i].x2;
+							r.y1 = rect[i].y1;
+							if (rect[i].y1 <= rect[select_rect].y2 && rect[select_rect].y2 <= rect[i].y2) r.y2 = rect[i].y2;
+							else r.y2 = rect[select_rect].y2;
+							rect_cnt -= 2;
+							rect[i].check = false, rect[select_rect].check = false;
+							overlapped = true;
+							break;
+						}
+						else if (rect[select_rect].y1 <= rect[i].y1 && rect[i].y1 <= rect[select_rect].y2) {
+							r.x1 = rect[select_rect].x1;
+							if (rect[select_rect].x1 <= rect[i].x2 && rect[i].x2 <= rect[select_rect].x2) r.x2 = rect[select_rect].x2;
+							else r.x2 = rect[i].x2;
+							r.y1 = rect[select_rect].y1;
+							if (rect[select_rect].y1 <= rect[i].y2 && rect[i].y2 <= rect[select_rect].y2)r.y2 = rect[select_rect].y2;
+							else r.y2 = rect[i].y2;
+							rect_cnt -= 2;
+							rect[i].check = false, rect[select_rect].check = false;
+							overlapped = true;
+							break;
+						}
+					}
+				}
+			}
+			if(overlapped){
+				for (int i = 0; i < rect_cnt; ++i) {
+					if (rect[i].check == false) {
+						for (int a = i; a < 9; ++a) {
+							rect[a] = rect[a + 1];
+						}
+						rect[9].check = false;
+					}
+				}
+				for (int i = 0; i < 10; ++i) {
+					if (rect[i].check == false) {
+						rect[i] = r;
+						++rect_cnt;
+						break;
+					}
+				}
+			}
+			for (int i = 0; i < 10; ++i) {
+				if(rect[i].check) std::cout << i<<",";
+				std::cout << rect_cnt << '\n';
+			}
+			std::cout << "\n";
 			select_rect = -1;
 		}
 		lbutton = false;
@@ -112,21 +193,21 @@ void Motion(int x, int y)
 			else {
 				lbutton = false;
 				if (-1 >= rect[select_rect].x1) {
-					rect[select_rect].x1 += 0.03;
-					rect[select_rect].x2 += 0.03;
+					rect[select_rect].x1 += 0.03f;
+					rect[select_rect].x2 += 0.03f;
 				}
 				else if (rect[select_rect].x2 >= 1) {
-					rect[select_rect].x1 -= 0.03;
-					rect[select_rect].x2 -= 0.03;
+					rect[select_rect].x1 -= 0.03f;
+					rect[select_rect].x2 -= 0.03f;
 				}
 
 				if (-1 >= rect[select_rect].y1) {
-					rect[select_rect].y1 += 0.03;
-					rect[select_rect].y2 += 0.03;
+					rect[select_rect].y1 += 0.03f;
+					rect[select_rect].y2 += 0.03f;
 				}
 				else if (rect[select_rect].y2 >= 1) {
-					rect[select_rect].y1 -= 0.03;
-					rect[select_rect].y2 -= 0.03;
+					rect[select_rect].y1 -= 0.03f;
+					rect[select_rect].y2 -= 0.03f;
 				}
 			}
 		}
@@ -146,7 +227,7 @@ void Create_rect() {
 	for (int i = 0; i < 10; ++i) {
 		if (rect[i].check == false) {
 			GLfloat px = pos_uid(dre), py = pos_uid(dre);
-			rect[i].x1 = px, rect[i].x2 = px + 0.2, rect[i].y1 = py, rect[i].y2 = py + 0.2;
+			rect[i].x1 = px, rect[i].x2 = px + 0.2f, rect[i].y1 = py, rect[i].y2 = py + 0.2f;
 			rect[i].r = clr_uid(dre), rect[i].g = clr_uid(dre), rect[i].b = clr_uid(dre);
 			rect[i].check = true;
 			++rect_cnt;
