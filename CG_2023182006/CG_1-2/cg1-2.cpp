@@ -11,11 +11,12 @@ void RandomTimerFunction(int value);
 typedef struct Rect {
 	GLfloat x1, y1, x2, y2, r, g, b;
 }Rect;
+Rect Zoom_InOut(int x, int y, Rect r);
 std::random_device rd;
 std::default_random_engine dre(rd());
 std::uniform_real_distribution<GLfloat> uid(0.0f, 1.0f);
 float bgc_r = 1.0f, bgc_g = 1.0f, bgc_b = 1.0f;
-Rect rect[4] = { {-1.0f,0.0f,0.0f,1.0f,uid(dre),uid(dre),uid(dre)},{0,0,1,1,uid(dre),uid(dre),uid(dre)},
+Rect rect[4] = { {-1,0,0,1,uid(dre),uid(dre),uid(dre)},{0,0,1,1,uid(dre),uid(dre),uid(dre)},
 				{-1,-1,0,0,uid(dre),uid(dre),uid(dre)},{0,-1,1,0,uid(dre),uid(dre),uid(dre)} };
 void main(int argc, char** argv) //--- 윈도우 출력하고 콜백함수 설정 
 { //--- 윈도우 생성하기
@@ -44,8 +45,8 @@ GLvoid drawScene() //--- 콜백 함수: 그리기 콜백 함수
 	glClear(GL_COLOR_BUFFER_BIT); // 설정된 색으로 전체를 칠하기
 	// 그리기 부분 구현
 	for (int i = 0; i < 4; ++i) {
-		glRectf(rect[i].x1, rect[i].y1, rect[i].x2, rect[i].y2);
 		glColor3f(rect[i].r, rect[i].g, rect[i].b);
+		glRectf(rect[i].x1, rect[i].y1, rect[i].x2, rect[i].y2);
 	}
 	//--- 그리기 관련 부분이 여기에 포함된다.
 	glutSwapBuffers(); // 화면에 출력하기
@@ -61,11 +62,50 @@ void Mouse(int button, int state, int x, int y)
 {
 	if (state == GLUT_DOWN && button == GLUT_LEFT_BUTTON) {
 		std::cout << "좌클릭 마우스 위치: "<<x<<","<<y<<'\n';
+		if (400*(rect[0].x1 + 1) < x && x < 400*(rect[0].x2 + 1)&& 300*(1-rect[0].y2) < y && y < 300*(1-rect[0].y1) ) {
+			rect[0].r = uid(dre), rect[0].g = uid(dre), rect[0].b = uid(dre);
+		}else if(400 * (rect[1].x1 + 1) < x && x < 400 * (rect[1].x2 + 1) &&300 * (1 - rect[1].y2) < y && y < 300 * (1 - rect[1].y1)) {
+			rect[1].r = uid(dre), rect[1].g = uid(dre), rect[1].b = uid(dre);
+		}
+		else if (400 * (rect[2].x1 + 1) < x && x < 400 * (rect[2].x2 + 1) && 300 * (1 - rect[2].y2) < y && y < 300 * (1 - rect[2].y1)) {
+			rect[2].r = uid(dre), rect[2].g = uid(dre), rect[2].b = uid(dre);
+		}
+		else if (400 * (rect[3].x1 + 1) < x && x < 400 * (rect[3].x2 + 1) && 300 * (1 - rect[3].y2) < y && y < 300 * (1 - rect[3].y1)) {
+			rect[3].r = uid(dre), rect[3].g = uid(dre), rect[3].b = uid(dre);
+		}
 	}
 	else if (state == GLUT_DOWN && button == GLUT_RIGHT_BUTTON) {
 		std::cout << "우클릭 마우스 위치: " << x << "," << y << '\n';
+		if(0<x&&x<400&&0<y&&y<300){
+			rect[0] = Zoom_InOut(x, y, rect[0]);
+		}
+		else if (400 < x && x < 800 && 0 < y && y < 300) {
+			rect[1] = Zoom_InOut(x, y, rect[1]);
+		}
+		else if (0 < x && x < 400 && 300 < y && y < 600) {
+			rect[2] = Zoom_InOut(x, y, rect[2]);
+		}
+		else if (400 < x && x < 800 && 300 < y && y < 600) {
+			rect[3] = Zoom_InOut(x, y, rect[3]);
+		}
 	}
 	glutPostRedisplay();
+}
+Rect Zoom_InOut(int x,int y,Rect r) {
+	Rect zrect=r;
+	if (400 * (zrect.x1 + 1) < x && x < 400 * (zrect.x2 + 1) && 300 * (1 - zrect.y2) < y && y < 300 * (1 - zrect.y1) && zrect.x2 - zrect.x1>0.1) {
+		zrect.x1 += 0.05;
+		zrect.x2 -= 0.05;
+		zrect.y1 += 0.05;
+		zrect.y2 -= 0.05;
+	}
+	else {
+		zrect.x1 -= 0.05;
+		zrect.x2 += 0.05;
+		zrect.y1 -= 0.05;
+		zrect.y2 += 0.05;
+	}
+	return zrect;
 }
 void RandomTimerFunction(int value)
 {
