@@ -11,6 +11,7 @@ typedef struct Rect {
 }Rect;
 Rect r[30], eraser;
 bool lbutton = false,start=true;
+float e_size;
 
 std::random_device rd;
 std::default_random_engine dre(rd());
@@ -23,6 +24,9 @@ void Mouse(int button, int state, int x, int y);
 void Motion(int x, int y);
 GLvoid create_rect();
 GLvoid eraser_setting();
+GLfloat move_x(int x, float move);
+GLfloat move_y(int y, float move);
+bool Collision_detection(GLfloat obj1_x1, GLfloat obj1_y1, GLfloat obj1_x2, GLfloat obj1_y2, GLfloat obj2_x1, GLfloat obj2_y1, GLfloat obj2_x2, GLfloat obj2_y2);
 //void TimerFunction(int value);
 
 void main(int argc, char** argv) //--- 윈도우 출력하고 콜백함수 설정 
@@ -81,20 +85,32 @@ void Keyboard(unsigned char key, int x, int y)
 void Mouse(int button, int state, int x, int y) {
 	if (state == GLUT_DOWN&&button==GLUT_LEFT_BUTTON) {
 		lbutton = true;
-		eraser.x1 = ((float)(x - 400) / 400) - 0.05f;
-		eraser.x2 = ((float)(x - 400) / 400) + 0.05f;
-		eraser.y1 = (float)(300 - y) / 300 - 0.05f;
-		eraser.y2 = (float)(300 - y) / 300 + 0.05f;
+		eraser.x1 = move_x(x, -e_size);
+		eraser.x2 = move_x(x, e_size);
+		eraser.y1 = move_y(y, -e_size);
+		eraser.y2 = move_y(y, e_size);
 	}
-	else if (state == GLUT_UP)lbutton = false;
+	else if (state == GLUT_UP) {
+		lbutton = false;
+		eraser_setting();
+	}
 	glutPostRedisplay();
 }
 void Motion(int x, int y) {
 	if (lbutton) {
-		eraser.x1 = ((float)(x - 400) / 400) - 0.05f;
-		eraser.x2 = ((float)(x - 400) / 400) + 0.05f;
-		eraser.y1 = (float)(300 - y) / 300 - 0.05f;
-		eraser.y2 = (float)(300 - y) / 300 + 0.05f;
+		eraser.x1 = move_x(x, -e_size);
+		eraser.x2 = move_x(x, e_size);
+		eraser.y1 = move_y(y, -e_size);
+		eraser.y2 = move_y(y, e_size);
+		for (int i = 0; i < 30; ++i) {
+			if(r[i].check) {
+				if (Collision_detection(r[i].x1, r[i].y1, r[i].x2, r[i].y2, eraser.x1, eraser.y1, eraser.x2, eraser.y2)) {
+					eraser.r = r[i].r, eraser.g = r[i].g, eraser.b = r[i].b;
+					e_size += 0.005;
+					r[i].check = false;
+				}
+			}
+		}
 	}
 	glutPostRedisplay();
 }
@@ -112,4 +128,32 @@ GLvoid create_rect() {
 }
 GLvoid eraser_setting() {
 	eraser.r = 0.0f, eraser.g = 0.0f, eraser.b = 0.0f;
+	e_size = 0.05f;
+}
+GLfloat move_x(int x, float move) {
+	return ((float)(x - 400) / 400) + move; // 400은 화면 가로 길이의 반
+}
+GLfloat move_y(int y, float move) {
+	return ((float)(300 - y) / 300) + move;
+}
+bool Collision_detection(GLfloat obj1_x1, GLfloat obj1_y1, GLfloat obj1_x2, GLfloat obj1_y2, GLfloat obj2_x1, GLfloat obj2_y1, GLfloat obj2_x2, GLfloat obj2_y2) {
+	if (obj1_x1 <= obj2_x1 && obj2_x1 <= obj1_x2) {
+		if (obj1_y1 <= obj2_y1 && obj2_y1 <= obj1_y2) {
+			return true;
+		}
+		else if (obj2_y1 <= obj1_y1 && obj1_y1 <= obj2_y2) {
+			return true;
+		}
+		else return false;
+	}
+	else if (obj2_x1 <= obj1_x1 && obj1_x1 <= obj2_x2) {
+		if (obj1_y1 <= obj2_y1 && obj2_y1 <= obj1_y2) {
+			return true;
+		}
+		else if (obj2_y1 <= obj1_y1 && obj1_y1 <= obj2_y2) {
+			return true;
+		}
+		else return false;
+	}
+	else return false;
 }
