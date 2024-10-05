@@ -1,4 +1,5 @@
 ﻿  cg1-5.cpp
 C:\github_local_repository\cg\CG_2023182006\cg_1-5\cg1-5.cpp(33,1): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
-C:\github_local_repository\cg\CG_2023182006\cg_1-5\cg1-5.cpp(109,21): warning C4305: '+=': 'double'에서 'float'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-5\cg1-5.cpp(96,21): warning C4305: '+=': 'double'에서 'float'(으)로 잘립니다.
+C:\github_local_repository\cg\CG_2023182006\cg_1-5\cg1-5.cpp(118,21): warning C4305: '+=': 'double'에서 'float'(으)로 잘립니다.
   cg_1-5.vcxproj -> C:\github_local_repository\cg\CG_2023182006\x64\Debug\cg_1-5.exe

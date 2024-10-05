@@ -89,6 +89,15 @@ void Mouse(int button, int state, int x, int y) {
 		eraser.x2 = move_x(x, e_size);
 		eraser.y1 = move_y(y, -e_size);
 		eraser.y2 = move_y(y, e_size);
+		for (int i = 0; i < 30; ++i) {
+			if (r[i].check) {
+				if (Collision_detection(r[i].x1, r[i].y1, r[i].x2, r[i].y2, eraser.x1, eraser.y1, eraser.x2, eraser.y2)) {
+					eraser.r = r[i].r, eraser.g = r[i].g, eraser.b = r[i].b;
+					e_size += 0.005;
+					r[i].check = false;
+				}
+			}
+		}
 	}
 	else if (state == GLUT_UP) {
 		lbutton = false;
