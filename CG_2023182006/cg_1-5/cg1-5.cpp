@@ -9,13 +9,15 @@ typedef struct Rect {
 	GLfloat x1, y1, x2, y2, r, g, b;
 	bool check;
 }Rect;
-Rect r[30], eraser;
+Rect r[40], eraser;
 bool lbutton = false,start=true;
 float e_size;
+int num;
 
 std::random_device rd;
 std::default_random_engine dre(rd());
 std::uniform_real_distribution<GLfloat> ps_uid(-1.0f, 0.95f),clr_uid(0.0f,1.0f);
+std::uniform_int_distribution<int> cnt_uid(20, 40);
 
 GLvoid drawScene(GLvoid);
 GLvoid Reshape(int w, int h);
@@ -57,7 +59,7 @@ GLvoid drawScene() //--- 콜백 함수: 그리기 콜백 함수
 	glClearColor(bgc_r, bgc_g, bgc_b, 1.0f); // 바탕색을 ‘blue’ 로 지정
 	glClear(GL_COLOR_BUFFER_BIT); // 설정된 색으로 전체를 칠하기
 	// 그리기 부분 구현
-	for (int i = 0; i < 30; ++i) {
+	for (int i = 0; i < num; ++i) {
 		if(r[i].check) {
 			glColor3f(r[i].r, r[i].g, r[i].b);
 			glRectf(r[i].x1, r[i].y1, r[i].x2, r[i].y2);
@@ -89,7 +91,7 @@ void Mouse(int button, int state, int x, int y) {
 		eraser.x2 = move_x(x, e_size);
 		eraser.y1 = move_y(y, -e_size);
 		eraser.y2 = move_y(y, e_size);
-		for (int i = 0; i < 30; ++i) {
+		for (int i = 0; i < num; ++i) {
 			if (r[i].check) {
 				if (Collision_detection(r[i].x1, r[i].y1, r[i].x2, r[i].y2, eraser.x1, eraser.y1, eraser.x2, eraser.y2)) {
 					eraser.r = r[i].r, eraser.g = r[i].g, eraser.b = r[i].b;
@@ -111,7 +113,7 @@ void Motion(int x, int y) {
 		eraser.x2 = move_x(x, e_size);
 		eraser.y1 = move_y(y, -e_size);
 		eraser.y2 = move_y(y, e_size);
-		for (int i = 0; i < 30; ++i) {
+		for (int i = 0; i < num; ++i) {
 			if(r[i].check) {
 				if (Collision_detection(r[i].x1, r[i].y1, r[i].x2, r[i].y2, eraser.x1, eraser.y1, eraser.x2, eraser.y2)) {
 					eraser.r = r[i].r, eraser.g = r[i].g, eraser.b = r[i].b;
@@ -128,7 +130,8 @@ void Motion(int x, int y) {
 //	glutTimerFunc(100, TimerFunction, 1); // 타이머함수 재 설정
 //}
 GLvoid create_rect() {
-	for (int i = 0; i < 30; ++i) {
+	num = cnt_uid(dre);
+	for (int i = 0; i < num; ++i) {
 		GLfloat px = ps_uid(dre), py = ps_uid(dre);
 		r[i].x1 = px, r[i].x2 = px + 0.05f, r[i].y1 = py, r[i].y2 = py + 0.05f;
 		r[i].r = clr_uid(dre), r[i].g = clr_uid(dre), r[i].b = clr_uid(dre);
