@@ -1,1 +1,62 @@
-﻿  cg_2-7.vcxproj -> C:\github_local_repository\cg\CG_2023182006\x64\Debug\cg_2-7.exe
+﻿  cg2-7.cpp
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(46,1): warning C4326: 'main'의 반환 형식이 'int'이어야 하는데 'void'입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(83,21): error C2065: 'vao': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(84,11): error C2065: 'c': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(102,3): error C2065: 'colors': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(102,21): error C2065: 'colors': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(102,39): error C2065: 'colors': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(105,6): error C2065: 'cnt': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(109,4): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(109,28): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(109,52): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(110,15): error C2065: 'cnt': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(111,4): error C2065: 'c': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(111,6): error C2065: 'cnt': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(114,4): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(114,35): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(114,59): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(115,4): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(115,35): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(115,59): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(116,15): error C2065: 'cnt': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(117,4): error C2065: 'c': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(117,6): error C2065: 'cnt': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(120,4): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(120,35): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(120,66): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(121,4): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(121,28): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(121,59): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(122,4): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(122,35): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(122,66): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(123,15): error C2065: 'cnt': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(124,4): error C2065: 'c': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(124,6): error C2065: 'cnt': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(127,4): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(127,35): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(127,66): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(128,4): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(128,35): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(128,66): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(129,4): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(129,35): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(129,66): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(130,4): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(130,35): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(130,66): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(131,15): error C2065: 'cnt': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(132,4): error C2065: 'c': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(132,6): error C2065: 'cnt': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(217,65): error C2065: 'cnt': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(217,102): error C2065: 'vao': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(217,80): error C2198: 'PFNGLGENVERTEXARRAYSPROC': 호출에 인수가 너무 적습니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(218,21): error C2065: 'vao': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(219,19): error C2065: 'vbo': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(221,33): error C2065: 'vbo': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(221,3): error C2198: 'PFNGLBINDBUFFERPROC': 호출에 인수가 너무 적습니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(224,55): error C2065: 'vertex_data': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(230,33): error C2065: 'vbo': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(230,3): error C2198: 'PFNGLBINDBUFFERPROC': 호출에 인수가 너무 적습니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(233,55): error C2065: 'colors': 선언되지 않은 식별자입니다.
+C:\github_local_repository\cg\CG_2023182006\cg_2-7\cg2-7.cpp(237,37): error C2065: 'cnt': 선언되지 않은 식별자입니다.
