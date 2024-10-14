@@ -20,7 +20,7 @@ GLuint vertexShader; //--- 버텍스 세이더 객체
 GLuint fragmentShader; //--- 프래그먼트 세이더 객체
 std::random_device rd;
 std::default_random_engine dre(rd());
-std::uniform_real_distribution<GLfloat> ps_uid(-1.0f, 1.0f), clr_uid(0.0f, 1.0f), size_uid(0.1f, 0.35f);
+std::uniform_real_distribution<GLfloat> ps_uid(0.1f, 0.9f), clr_uid(0.0f, 1.0f), w_size_uid(0.05f, 0.1f), h_size_uid(0.05f,0.3f);
 
 //--- filetobuf: 사용자정의 함수로 텍스트를 읽어서 문자열에 저장하는 함수
 char* filetobuf(const char* file);
@@ -91,7 +91,7 @@ void main(int argc, char** argv) //--- 윈도우 출력하고 콜백함수 설정
 
 	glutDisplayFunc(drawScene); // 출력 함수의 지정
 	glutReshapeFunc(Reshape); // 다시 그리기 함수 지정
-	//glutMouseFunc(Mouse);
+	glutMouseFunc(Mouse);
 	//glutMotionFunc(Motion);
 	glutKeyboardFunc(Keyboard); // 키보드 입력 콜백 함수
 	glutMainLoop(); // 이벤트 처리 시작
@@ -137,12 +137,59 @@ void Keyboard(unsigned char key, int x, int y)
 }
 void Mouse(int button, int state, int x, int y) {
 	float cur_x = (float)(x - 400) / 400, cur_y = (float)(300 - y) / 300;
+	int quadrant = 0;
+	if (0 <= cur_x && cur_x < 1 && 0 <= cur_y && cur_y < 1)quadrant = 1;
+	else if (-1 <= cur_x && cur_x < 0 && 0 <= cur_y && cur_y < 1)quadrant = 2;
+	else if (-1 <= cur_x && cur_x < 0 && -1 <= cur_y && cur_y < 0)quadrant = 3;
+	else if (0 <= cur_x && cur_x < 1 && -1 <= cur_y && cur_y < 0)quadrant = 4;
 	if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-
+		for (int i = 0; i < 12; ++i) {
+			if (check[i][0] == 1&&check[i][1] == quadrant)check[i][0] = 0;
+		}
+		for (int i = 0; i < 12; ++i) {
+			if (check[i][0] == 0) {
+				int a = i * 3;
+				colors[a][0] = clr_uid(dre), colors[a][1] = clr_uid(dre), colors[a][2] = clr_uid(dre);
+				colors[a + 1][0] = clr_uid(dre), colors[a + 1][1] = clr_uid(dre), colors[a + 1][2] = clr_uid(dre);
+				colors[a + 2][0] = clr_uid(dre), colors[a + 2][1] = clr_uid(dre), colors[a + 2][2] = clr_uid(dre);
+				GLfloat size_w = w_size_uid(dre), size_h = h_size_uid(dre);
+				vertex_data[a][0] = cur_x - size_w, vertex_data[a][1] = cur_y - size_h;
+				vertex_data[a+1][0] = cur_x + size_w, vertex_data[a+1][1] = cur_y - size_h;
+				vertex_data[a+2][0] = cur_x, vertex_data[a+2][1] = cur_y + size_h;
+				make_shaderProgram();
+				check[i][1] = quadrant;
+				check[i][0] = 1;
+				break;
+			}
+		}
 	}
 	else if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN) {
-
+		int cnt = 0;
+		for (int i = 0; i < 12; ++i) {
+			if (check[i][0] == 1) {
+				if (check[i][1] == quadrant)++cnt;
+			}
+		}
+		if (cnt < 3) {
+			for (int i = 0; i < 12; ++i) {
+				if (check[i][0] == 0) {
+					int a = i * 3;
+					colors[a][0] = clr_uid(dre), colors[a][1] = clr_uid(dre), colors[a][2] = clr_uid(dre);
+					colors[a + 1][0] = clr_uid(dre), colors[a + 1][1] = clr_uid(dre), colors[a + 1][2] = clr_uid(dre);
+					colors[a + 2][0] = clr_uid(dre), colors[a + 2][1] = clr_uid(dre), colors[a + 2][2] = clr_uid(dre);
+					GLfloat size_w = w_size_uid(dre), size_h = h_size_uid(dre);
+					vertex_data[a][0] = cur_x - size_w, vertex_data[a][1] = cur_y - size_h;
+					vertex_data[a + 1][0] = cur_x + size_w, vertex_data[a + 1][1] = cur_y - size_h;
+					vertex_data[a + 2][0] = cur_x, vertex_data[a + 2][1] = cur_y + size_h;
+					make_shaderProgram();
+					check[i][1] = quadrant;
+					check[i][0] = 1;
+					break;
+				}
+			}
+		}
 	}
+	glutPostRedisplay();
 }
 //--- 버텍스 세이더 객체 만들기
 void make_vertexShaders()
