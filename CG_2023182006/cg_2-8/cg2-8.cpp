@@ -6,14 +6,13 @@
 #include <random>
 #include <stdlib.h>
 #include <stdio.h>
-GLfloat vertex_data[6][3]{
-	{0.0f, 0.0f, 0.0f },  // 첫 번째 버텍스
-	{0.0f, 0.0f, 0.0f},  // 두 번째 버텍스
-	{0.0f, 0.0f, 0.0f }   // 세 번째 버텍스
-};
+GLfloat vertex_data[36][3];
+GLfloat colors[36][3];
 GLuint vao, vbo[2];
 bool triangle_full = true;
-int index = 0;
+int check[12][2]; // T(1)또는F(0), 사분면 표시(1:우상,2:좌상,3:좌하,4:우하)
+/* 2 1
+   3 4*/
 float bgc_r = 1.0f, bgc_g = 1.0f, bgc_b = 1.0f;
 GLint width, height;
 GLuint shaderProgramID; //--- 세이더 프로그램 이름
@@ -56,17 +55,35 @@ void main(int argc, char** argv) //--- 윈도우 출력하고 콜백함수 설정
 
 	//--- 세이더 읽어와서 세이더 프로그램 만들기
 	for (int i = 0; i < 4; ++i) {
+		int a = i * 3;
+		colors[a][0] = clr_uid(dre), colors[a][1] = clr_uid(dre), colors[a][2] = clr_uid(dre);
+		colors[a+1][0] = clr_uid(dre), colors[a+1][1] = clr_uid(dre), colors[a+1][2] = clr_uid(dre);
+		colors[a+2][0] = clr_uid(dre), colors[a+2][1] = clr_uid(dre), colors[a+2][2] = clr_uid(dre);
 		if (i == 0) {
 			vertex_data[0][0] = -0.65f, vertex_data[0][1] = 0.325f;
 			vertex_data[1][0] = -0.45f, vertex_data[1][1] = 0.325f;
 			vertex_data[2][0] = -0.55f, vertex_data[2][1] = 0.725f;
-			index = 0;
+			check[i][1] = 2;
 		}
 		else if (i == 1) {
 			vertex_data[3][0] = 0.45f, vertex_data[3][1] = 0.325f;
 			vertex_data[4][0] = 0.65f, vertex_data[4][1] = 0.325f;
 			vertex_data[5][0] = 0.55f, vertex_data[5][1] = 0.725f;
+			check[i][1] = 1;
 		}
+		else if (i == 2) {
+			vertex_data[6][0] = -0.65f, vertex_data[6][1] = -0.725f;
+			vertex_data[7][0] = -0.45f, vertex_data[7][1] = -0.725f;
+			vertex_data[8][0] = -0.55f, vertex_data[8][1] = -0.325f;
+			check[i][1] = 3;
+		}
+		else if (i == 3) {
+			vertex_data[9][0] = 0.45f, vertex_data[9][1] = -0.725f;
+			vertex_data[10][0] = 0.65f, vertex_data[10][1] = -0.725f;
+			vertex_data[11][0] = 0.55f, vertex_data[11][1] = -0.325f;
+			check[i][1] = 4;
+		}
+		check[i][0] = 1;
 		make_shaderProgram();
 	}
 	
@@ -91,9 +108,11 @@ GLvoid drawScene() //--- 콜백 함수: 그리기 콜백 함수
 	// 그리기 부분 구현
 	//--- 사용할 VAO 불러오기
 	glBindVertexArray(vao);
-	for(int i = 0; i < 2;++i) {
-		if (triangle_full)glDrawArrays(GL_TRIANGLES, i*3, 3);
-		else glDrawArrays(GL_LINE_LOOP, i*3, 3);
+	for(int i = 0; i < 12;++i) {
+		if(check[i][0]==1) {
+			if (triangle_full)glDrawArrays(GL_TRIANGLES, i * 3, 3);
+			else glDrawArrays(GL_LINE_LOOP, i * 3, 3);
+		}
 	}
 	//--- 그리기 관련 부분이 여기에 포함된다.
 	glutSwapBuffers(); // 화면에 출력하기
@@ -188,7 +207,7 @@ GLuint make_shaderProgram()
 		glGetProgramInfoLog(shaderProgramID, 512, NULL, errorLog);
 		std::cerr << "ERROR:shader program 연결 실패\n" << errorLog << std::endl;
 		return false;
-	}	return shaderProgramID;}void InitBuffer() {	GLfloat colors[]	{ clr_uid(dre), clr_uid(dre), clr_uid(dre),		clr_uid(dre),clr_uid(dre),clr_uid(dre),		clr_uid(dre),clr_uid(dre),clr_uid(dre)	};	glGenVertexArrays(1, &vao); //--- VAO 를 지정하고 할당하기
+	}	return shaderProgramID;}void InitBuffer() {	glGenVertexArrays(1, &vao); //--- VAO 를 지정하고 할당하기
 	glBindVertexArray(vao); //--- VAO를 바인드하기
 	glGenBuffers(2, vbo); //--- 2개의 VBO를 지정하고 할당하기
 	//--- 1번째 VBO를 활성화하여 바인드하고, 버텍스 속성 (좌표값)을 저장
